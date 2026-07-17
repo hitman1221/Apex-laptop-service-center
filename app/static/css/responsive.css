@@ -1,0 +1,110 @@
+@media (max-width: 991.98px) {
+  .topbar-right {
+    display: none;
+  }
+
+  .main-navbar .navbar-collapse {
+    margin-top: 15px;
+    padding: 18px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  }
+
+  .hero-section {
+    padding: 70px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 50px;
+  }
+
+  .enquiry-card {
+    margin-top: 10px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .topbar-content {
+    justify-content: center;
+  }
+
+  .topbar-left {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 17px;
+  }
+
+  .hero-section {
+    padding: 55px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 42px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .enquiry-card {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .brand-text strong {
+    font-size: 18px;
+  }
+
+  .brand-text small {
+    font-size: 10px;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-section h1 {
+    font-size: 36px;
+  }
+
+  .hero-trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .enquiry-card-header {
+    flex-direction: column;
+  }
+
+  .floating-whatsapp {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+    font-size: 25px;
+  }
+}

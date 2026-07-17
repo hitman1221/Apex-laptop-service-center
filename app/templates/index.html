@@ -1,0 +1,878 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Laptop Repair in Kandivali East, Mumbai | Apex Laptop Service Center
+{% endblock %}
+
+{% block meta_description %}
+  Contact Apex Laptop Service Center for laptop and computer repair services
+  in Kandivali East, Mumbai. Rated {{ config.BUSINESS_RATING }} from
+  {{ config.BUSINESS_RATING_COUNT }} customer ratings and serving customers
+  for {{ config.BUSINESS_EXPERIENCE_YEARS }} years.
+{% endblock %}
+
+{% block og_title %}
+  Apex Laptop Service Center | Kandivali East, Mumbai
+{% endblock %}
+
+{% block content %}
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-pattern"></div>
+
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-7" data-aos="fade-right">
+          <span class="section-badge">
+            <i class="fa-solid fa-star"></i>
+            {{ config.BUSINESS_RATING }} Rated Laptop Repair Service
+          </span>
+
+          <h1>
+            Laptop Repair Service
+            <span>in Kandivali East, Mumbai</span>
+          </h1>
+
+          <p class="hero-description">
+            Contact {{ config.BUSINESS_NAME }} for laptop and computer repair
+            assistance in Kandivali East. Submit your enquiry and the service
+            team will contact you regarding your laptop issue.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary-custom"
+              href="#enquiry-form"
+            >
+              <i class="fa-solid fa-calendar-check"></i>
+              Request a Callback
+            </a>
+
+            <a
+              class="btn btn-outline-custom"
+              href="tel:{{ config.BUSINESS_PHONE }}"
+            >
+              <i class="fa-solid fa-phone"></i>
+              Call {{ config.BUSINESS_PHONE }}
+            </a>
+          </div>
+
+          <div class="hero-trust-grid">
+            <div class="trust-item">
+              <div class="trust-icon">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+
+              <div>
+                <strong>
+                  {{ config.BUSINESS_EXPERIENCE_YEARS }} Years
+                </strong>
+                <span>In Business</span>
+              </div>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon">
+                <i class="fa-solid fa-star"></i>
+              </div>
+
+              <div>
+                <strong>{{ config.BUSINESS_RATING }} Rating</strong>
+                <span>
+                  {{ config.BUSINESS_RATING_COUNT }} Ratings
+                </span>
+              </div>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+
+              <div>
+                <strong>
+                  {{ config.BUSINESS_OPENING_TIME }}
+                  -
+                  {{ config.BUSINESS_CLOSING_TIME }}
+                </strong>
+                <span>{{ config.BUSINESS_WORKING_DAYS }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enquiry Form -->
+        <div class="col-lg-5" data-aos="fade-left">
+          <div class="enquiry-card" id="enquiry-form">
+
+            <div class="enquiry-card-header">
+              <span class="enquiry-icon">
+                <i class="fa-solid fa-headset"></i>
+              </span>
+
+              <div>
+                <h2>Request a Callback</h2>
+
+                <p>
+                  Share your details and briefly describe the laptop or
+                  computer issue.
+                </p>
+              </div>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% for category, message in messages %}
+                <div
+                  class="alert alert-{{ category }}"
+                  role="alert"
+                >
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endwith %}
+
+            <form method="POST" novalidate>
+              {{ form.hidden_tag() }}
+
+              <div class="form-group">
+                {{ form.name.label(class="form-label") }}
+
+                {{ form.name(
+                  class="form-control" +
+                    (" is-invalid" if form.name.errors else ""),
+                  placeholder="Enter your full name",
+                  autocomplete="name",
+                  maxlength="100"
+                ) }}
+
+                {% for error in form.name.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                {{ form.phone.label(class="form-label") }}
+
+                {{ form.phone(
+                  class="form-control" +
+                    (" is-invalid" if form.phone.errors else ""),
+                  placeholder="Enter 10-digit phone number",
+                  autocomplete="tel",
+                  inputmode="numeric",
+                  maxlength="10"
+                ) }}
+
+                {% for error in form.phone.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+
+                {{ form.email(
+                  class="form-control" +
+                    (" is-invalid" if form.email.errors else ""),
+                  placeholder="Enter your email address",
+                  autocomplete="email",
+                  type="email",
+                  maxlength="120"
+                ) }}
+
+                {% for error in form.email.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                {{ form.pincode.label(class="form-label") }}
+
+                {{ form.pincode(
+                  class="form-control" +
+                    (" is-invalid" if form.pincode.errors else ""),
+                  placeholder="Enter your 6-digit pincode",
+                  inputmode="numeric",
+                  maxlength="6"
+                ) }}
+
+                {% for error in form.pincode.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="form-group">
+                {{ form.message.label(class="form-label") }}
+
+                {{ form.message(
+                  class="form-control" +
+                    (" is-invalid" if form.message.errors else ""),
+                  placeholder="Describe your laptop or computer issue",
+                  rows="3",
+                  maxlength="1000"
+                ) }}
+
+                {% for error in form.message.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              {{ form.submit(
+                class="btn btn-primary-custom w-100",
+                value="Submit Enquiry"
+              ) }}
+
+              <p class="form-privacy">
+                <i class="fa-solid fa-lock"></i>
+                Your details will only be used to respond to this enquiry.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Verified Business Information -->
+  <section class="about-strip">
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="info-card">
+            <i class="fa-solid fa-briefcase"></i>
+
+            <div>
+              <strong>
+                {{ config.BUSINESS_EXPERIENCE_YEARS }} Years
+              </strong>
+              <span>In Business</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="info-card">
+            <i class="fa-solid fa-star"></i>
+
+            <div>
+              <strong>{{ config.BUSINESS_RATING }} Rating</strong>
+              <span>
+                {{ config.BUSINESS_RATING_COUNT }} Customer Ratings
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="info-card">
+            <i class="fa-solid fa-location-dot"></i>
+
+            <div>
+              <strong>Kandivali East</strong>
+              <span>Mumbai, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section-padding about-section" id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="about-visual">
+            <div class="about-visual-main">
+              <i class="fa-solid fa-laptop-medical"></i>
+
+              <h3>Laptop and Computer Repair Services</h3>
+
+              <p>
+                Service assistance for laptop and computer-related issues in
+                Kandivali East, Mumbai.
+              </p>
+            </div>
+
+            <div class="about-floating-card">
+              <i class="fa-solid fa-star"></i>
+
+              <div>
+                <strong>{{ config.BUSINESS_RATING }} Customer Rating</strong>
+                <span>
+                  Based on {{ config.BUSINESS_RATING_COUNT }} ratings
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+          <span class="section-badge">
+            About {{ config.BUSINESS_NAME }}
+          </span>
+
+          <h2 class="section-title">
+            Laptop Repair Service in Kandivali East
+          </h2>
+
+          <p class="section-description">
+            {{ config.BUSINESS_NAME }} is listed under
+            {{ config.BUSINESS_CATEGORY_PRIMARY }} and
+            {{ config.BUSINESS_CATEGORY_SECONDARY }} in Kandivali East,
+            Mumbai.
+          </p>
+
+          <p class="section-description">
+            The business has been operating for
+            {{ config.BUSINESS_EXPERIENCE_YEARS }} years and is currently
+            rated {{ config.BUSINESS_RATING }} based on
+            {{ config.BUSINESS_RATING_COUNT }} customer ratings.
+          </p>
+
+          <div class="about-feature-grid">
+            <div class="about-feature-item">
+              <i class="fa-solid fa-laptop"></i>
+              <span>Laptop repair enquiries</span>
+            </div>
+
+            <div class="about-feature-item">
+              <i class="fa-solid fa-computer"></i>
+              <span>Computer repair enquiries</span>
+            </div>
+
+            <div class="about-feature-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Kandivali East location</span>
+            </div>
+
+            <div class="about-feature-item">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>
+                Open {{ config.BUSINESS_WORKING_DAYS }}
+              </span>
+            </div>
+
+            <div class="about-feature-item">
+              <i class="fa-regular fa-clock"></i>
+              <span>
+                {{ config.BUSINESS_OPENING_TIME }} to
+                {{ config.BUSINESS_CLOSING_TIME }}
+              </span>
+            </div>
+
+            <div class="about-feature-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>{{ config.BUSINESS_PHONE }}</span>
+            </div>
+          </div>
+
+          <a
+            class="btn btn-primary-custom mt-4"
+            href="#enquiry-form"
+          >
+            <i class="fa-solid fa-calendar-check"></i>
+            Submit an Enquiry
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+     SERVICES SECTION
+========================= -->
+
+{% include "partials/services.html" %}
+
+<!-- =========================
+     BRANDS
+========================= -->
+
+<section class="brands-section section-padding">
+
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-badge">
+
+Supported Brands
+
+</span>
+
+<h2>All Major Laptop Brands Supported</h2>
+
+<p>
+
+Our certified engineers repair every leading laptop brand.
+
+</p>
+
+</div>
+
+<div class="brands-grid">
+
+<div class="brand-card">Dell</div>
+
+<div class="brand-card">HP</div>
+
+<div class="brand-card">Lenovo</div>
+
+<div class="brand-card">ASUS</div>
+
+<div class="brand-card">Acer</div>
+
+<div class="brand-card">MSI</div>
+
+<div class="brand-card">Apple</div>
+
+<div class="brand-card">Samsung</div>
+
+<div class="brand-card">Sony</div>
+
+<div class="brand-card">Toshiba</div>
+
+</div>
+
+</div>
+
+</section>
+
+  <!-- Common Issues -->
+  <section class="section-padding problems-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="section-badge">Common Enquiries</span>
+
+          <h2 class="section-title">
+            Laptop Problems You Can Enquire About
+          </h2>
+
+          <p class="section-description">
+            Contact the service center if your laptop or computer is
+            experiencing any of these common issues.
+          </p>
+
+          {% set problems = [
+            "Laptop is not turning on",
+            "Screen is damaged, blank, or flickering",
+            "Battery is not charging",
+            "Laptop is overheating or shutting down",
+            "Keyboard or touchpad is not responding",
+            "Laptop performance is slow",
+            "Windows or software is not starting",
+            "Charging port or adapter is not working",
+            "Storage or memory upgrade is required",
+            "Computer or laptop requires general diagnosis"
+          ] %}
+
+          <div class="problem-list">
+            {% for problem in problems %}
+              <div class="problem-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ problem }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="diagnostic-card">
+            <div class="diagnostic-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <h3>Submit Your Laptop Issue</h3>
+
+            <p>
+              Provide your phone number, pincode, and a short description of
+              the issue. The service team can contact you with the next steps.
+            </p>
+
+            <div class="diagnostic-metrics">
+              <div>
+                <strong>{{ config.BUSINESS_RATING }}</strong>
+                <span>Public Rating</span>
+              </div>
+
+              <div>
+                <strong>{{ config.BUSINESS_RATING_COUNT }}</strong>
+                <span>Ratings</span>
+              </div>
+
+              <div>
+                <strong>
+                  {{ config.BUSINESS_EXPERIENCE_YEARS }}
+                </strong>
+                <span>Years in Business</span>
+              </div>
+            </div>
+
+            <a
+              class="btn btn-primary-custom"
+              href="#enquiry-form"
+            >
+              Request a Callback
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section> 
+
+  <!-- Rating Summary -->
+  <section class="section-padding reviews-section" id="reviews">
+    <div class="container">
+      <div class="rating-summary" data-aos="fade-up">
+
+        <div class="rating-score-block">
+          <span class="rating-large">
+            {{ config.BUSINESS_RATING }}
+          </span>
+
+          <div>
+            <div class="rating-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+
+            <strong>
+              Based on {{ config.BUSINESS_RATING_COUNT }} ratings
+            </strong>
+
+            <p>Public business-listing rating summary</p>
+          </div>
+        </div>
+
+        <div class="rating-content">
+          <span class="section-badge">Customer Rating</span>
+
+          <h2>
+            Rated {{ config.BUSINESS_RATING }} by Customers
+          </h2>
+
+          <p>
+            {{ config.BUSINESS_NAME }} is publicly listed with a
+            {{ config.BUSINESS_RATING }} rating based on
+            {{ config.BUSINESS_RATING_COUNT }} customer ratings.
+          </p>
+
+          <p class="section-disclaimer">
+            Individual customer comments are not reproduced here without
+            permission.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-padding faq-section" id="faq">
+    <div class="container">
+
+      <div class="section-heading" data-aos="fade-up">
+        <span class="section-badge">Frequently Asked Questions</span>
+
+        <h2>Laptop Repair Enquiry FAQs</h2>
+
+        <p>
+          Common questions about submitting an enquiry through this website.
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+          <div class="accordion" id="faqAccordion">
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqOne"
+                  aria-expanded="true"
+                  aria-controls="faqOne"
+                >
+                  Where is Apex Laptop Service Center located?
+                </button>
+              </h3>
+
+              <div
+                id="faqOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  {{ config.BUSINESS_ADDRESS }}
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqTwo"
+                  aria-expanded="false"
+                  aria-controls="faqTwo"
+                >
+                  What are the business working hours?
+                </button>
+              </h3>
+
+              <div
+                id="faqTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  The listed working hours are
+                  {{ config.BUSINESS_OPENING_TIME }} to
+                  {{ config.BUSINESS_CLOSING_TIME }},
+                  {{ config.BUSINESS_WORKING_DAYS }}.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqThree"
+                  aria-expanded="false"
+                  aria-controls="faqThree"
+                >
+                  How can I submit a repair enquiry?
+                </button>
+              </h3>
+
+              <div
+                id="faqThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Complete the callback form on this page or call
+                  {{ config.BUSINESS_PHONE }}.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqFour"
+                  aria-expanded="false"
+                  aria-controls="faqFour"
+                >
+                  Does submitting the form confirm a repair booking?
+                </button>
+              </h3>
+
+              <div
+                id="faqFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  No. Submitting the form creates an enquiry. Service
+                  availability, repair charges, and booking details must be
+                  confirmed directly with the service center.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqFive"
+                  aria-expanded="false"
+                  aria-controls="faqFive"
+                >
+                  Can I ask about the expected repair cost?
+                </button>
+              </h3>
+
+              <div
+                id="faqFive"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes. Mention the laptop model and issue in the enquiry form.
+                  The service team can provide further information after
+                  reviewing the request.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact and Map Section -->
+  <section class="section-padding contact-section">
+    <div class="container">
+      <div class="row align-items-stretch g-4">
+
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="contact-card">
+            <span class="section-badge">Contact Information</span>
+
+            <h2>Visit or Contact the Service Center</h2>
+
+            <div class="contact-detail-list">
+
+              <div class="contact-detail">
+                <i class="fa-solid fa-location-dot"></i>
+
+                <div>
+                  <strong>Address</strong>
+                  <span>{{ config.BUSINESS_ADDRESS }}</span>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <i class="fa-solid fa-phone"></i>
+
+                <div>
+                  <strong>Phone</strong>
+
+                  <a href="tel:{{ config.BUSINESS_PHONE }}">
+                    {{ config.BUSINESS_PHONE }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <i class="fa-regular fa-clock"></i>
+
+                <div>
+                  <strong>Working Hours</strong>
+
+                  <span>
+                    {{ config.BUSINESS_WORKING_DAYS }}:
+                    {{ config.BUSINESS_OPENING_TIME }}
+                    -
+                    {{ config.BUSINESS_CLOSING_TIME }}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="contact-actions">
+              <a
+                class="btn btn-primary-custom"
+                href="tel:{{ config.BUSINESS_PHONE }}"
+              >
+                <i class="fa-solid fa-phone"></i>
+                Call Now
+              </a>
+
+              <a
+                class="btn btn-outline-custom"
+                href="{{ config.GOOGLE_MAPS_URL }}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fa-solid fa-map-location-dot"></i>
+                Open Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="map-card">
+            <iframe
+              title="Apex Laptop Service Center location"
+              src="https://www.google.com/maps?q={{ config.BUSINESS_LATITUDE }},{{ config.BUSINESS_LONGITUDE }}&z=16&output=embed"
+              width="100%"
+              height="100%"
+              style="border: 0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="service-cta-section">
+    <div class="container">
+      <div class="service-cta-box" data-aos="zoom-in">
+
+        <div>
+          <span>Laptop or computer repair enquiry</span>
+
+          <h2>
+            Contact {{ config.BUSINESS_NAME }} in Kandivali East.
+          </h2>
+        </div>
+
+        <div class="service-cta-actions">
+          <a
+            class="btn btn-light"
+            href="#enquiry-form"
+          >
+            Submit Enquiry
+          </a>
+
+          <a
+            class="btn btn-outline-light"
+            href="tel:{{ config.BUSINESS_PHONE }}"
+          >
+            <i class="fa-solid fa-phone"></i>
+            {{ config.BUSINESS_PHONE }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

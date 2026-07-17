@@ -1,0 +1,57 @@
+<section
+  class="section-padding services-section"
+  id="services"
+  aria-labelledby="services-heading"
+>
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <span class="section-badge">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Repair Services
+      </span>
+
+      <h2 id="services-heading">
+        Laptop Repair Services in Kandivali East
+      </h2>
+
+      <p>
+        Submit an enquiry for common laptop hardware, charging, display,
+        keyboard, software, audio, or connectivity issues.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for service in services %}
+        <div
+          class="col-xl-4 col-md-6"
+          data-aos="fade-up"
+          data-aos-delay="{{ loop.index0 * 50 }}"
+        >
+          <article class="service-card">
+            <div class="service-card-icon" aria-hidden="true">
+              <i class="fa-solid {{ service.icon }}"></i>
+            </div>
+
+            <h3>{{ service.title }}</h3>
+
+            <p>{{ service.description }}</p>
+
+            <a
+              href="#enquiry-form"
+              aria-label="Enquire about {{ service.title }}"
+            >
+              Enquire Now
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+
+    <p class="section-disclaimer">
+      Service availability, repair scope, replacement parts, expected
+      charges, and completion time must be confirmed directly with the
+      service center.
+    </p>
+  </div>
+</section>

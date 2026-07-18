@@ -13,10 +13,11 @@ from flask import (
 from app.content import (
     BRANDS,
     BUSINESS_HIGHLIGHTS,
-    FAQ_ITEMS,
+    FAQS,
     PROCESS_STEPS,
+    REPAIR_PROCESS,
     SERVICES,
-    WHY_CHOOSE_ITEMS,
+    WHY_CHOOSE_US,
 )
 from app.forms import EnquiryForm
 from app.services.enquiry_service import (
@@ -30,39 +31,54 @@ main_bp = Blueprint("main", __name__)
 
 @main_bp.route("/", methods=["GET", "POST"])
 def home():
-    """Render the landing page and process enquiry submissions."""
+    """Render homepage and process enquiry submissions."""
 
     form = EnquiryForm()
 
     if form.validate_on_submit():
         try:
             EnquiryService.create_enquiry(
-                name=form.name.data,
-                phone=form.phone.data,
-                email=form.email.data,
-                pincode=form.pincode.data,
+                name=form.name.data.strip(),
+                phone=form.phone.data.strip(),
+                email=(
+                    form.email.data.strip()
+                    if form.email.data
+                    else None
+                ),
                 service=form.service.data,
-                message=form.message.data,
+                message=form.message.data.strip(),
                 source_page=request.path,
             )
 
         except EnquiryServiceError:
+            current_app.logger.exception(
+                "Unable to create customer enquiry."
+            )
+
             flash(
                 (
-                    "We could not submit your enquiry right now. "
-                    "Please try again or call the service center."
+                    "We could not submit your enquiry "
+                    "right now. Please try again or "
+                    "contact the service center directly."
                 ),
                 "danger",
             )
 
         else:
-            return redirect(url_for("main.thank_you"))
+            return redirect(
+                url_for("main.thank_you")
+            )
 
     elif request.method == "POST":
+        current_app.logger.warning(
+            "Enquiry form validation failed: %s",
+            form.errors,
+        )
+
         flash(
             (
-                "Please review the highlighted fields "
-                "and submit the form again."
+                "Some details are missing or invalid. "
+                "Please check the highlighted fields."
             ),
             "danger",
         )
@@ -74,8 +90,9 @@ def home():
         brands=BRANDS,
         business_highlights=BUSINESS_HIGHLIGHTS,
         process_steps=PROCESS_STEPS,
-        why_choose_items=WHY_CHOOSE_ITEMS,
-        faq_items=FAQ_ITEMS,
+        why_choose_us=WHY_CHOOSE_US,
+        repair_process=REPAIR_PROCESS,
+        faqs=FAQS,
     )
 
 

@@ -1,110 +1,302 @@
+/* ========================================================================== 
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1400px) {
+    :root {
+        --section-space: 90px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 3.6rem;
+    }
+
+    .hero-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .site-footer__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
 @media (max-width: 991.98px) {
-  .topbar-right {
-    display: none;
-  }
+    :root {
+        --section-space: 80px;
+        --header-offset: 116px;
+    }
 
-  .main-navbar .navbar-collapse {
-    margin-top: 15px;
-    padding: 18px;
-    border-radius: 16px;
-    background: #ffffff;
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
-  }
+    .site-navbar .navbar-collapse {
+        margin-top: 14px;
+        padding: 14px;
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        background: var(--color-white);
+        box-shadow: var(--shadow-md);
+    }
 
-  .hero-section {
-    padding: 70px 0;
-  }
+    .site-navbar .navbar-nav {
+        align-items: stretch !important;
+    }
 
-  .hero-section h1 {
-    font-size: 50px;
-  }
+    .site-navbar .nav-link {
+        padding: 11px 12px !important;
+        border-radius: 10px;
+    }
 
-  .enquiry-card {
-    margin-top: 10px;
-  }
+    .site-navbar .nav-link::after {
+        display: none;
+    }
 
-  .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .site-navbar .nav-link.active,
+    .site-navbar .nav-link:hover {
+        background: var(--color-primary-light);
+        color: var(--color-primary-dark);
+    }
+
+    .navbar-cta {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .hero-section {
+        text-align: center;
+    }
+
+    .hero-section .row {
+        min-height: auto;
+    }
+
+    .hero-title,
+    .hero-description,
+    .hero-highlights {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .about-card,
+    .contact-card {
+        margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+        margin-top: 20px;
+    }
+
+    .cta-card {
+        text-align: center;
+    }
+
+    .site-footer__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 767.98px) {
-  .topbar-content {
-    justify-content: center;
-  }
+    :root {
+        --section-space: 70px;
+        --header-offset: 84px;
+    }
 
-  .topbar-left {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 17px;
-  }
+    body {
+        padding-bottom: 72px;
+    }
 
-  .hero-section {
-    padding: 55px 0;
-  }
+    .topbar {
+        display: none;
+    }
 
-  .hero-section h1 {
-    font-size: 42px;
-  }
+    .site-navbar {
+        min-height: 72px;
+    }
 
-  .hero-description {
-    font-size: 16px;
-  }
+    .site-brand__icon {
+        width: 42px;
+        height: 42px;
+    }
 
-  .hero-actions {
-    flex-direction: column;
-  }
+    .hero-section {
+        min-height: auto;
+        padding: 64px 0;
+    }
 
-  .hero-actions .btn {
-    width: 100%;
-  }
+    .hero-title {
+        font-size: 2.7rem;
+    }
 
-  .hero-trust-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .hero-description {
+        font-size: 1rem;
+    }
 
-  .enquiry-card {
-    padding: 24px;
-    border-radius: 22px;
-  }
+    .hero-highlights {
+        grid-template-columns: 1fr;
+    }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
+    .highlight-card {
+        min-height: auto;
+        text-align: left;
+    }
+
+    .enquiry-card {
+        padding: 28px 22px;
+        text-align: left;
+    }
+
+    .about-card {
+        padding: 35px;
+    }
+
+    .experience-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 25px;
+    }
+
+    .about-stats {
+        flex-direction: column;
+    }
+
+    .service-card,
+    .why-card,
+    .process-card,
+    .contact-card {
+        padding: 28px;
+    }
+
+    .cta-card {
+        padding: 40px 30px;
+    }
+
+    .cta-card h2 {
+        font-size: 2rem;
+    }
+
+    .site-footer {
+        padding-bottom: 34px;
+    }
+
+    .site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .floating-action--whatsapp {
+        display: none;
+    }
+
+    .floating-action--top {
+        right: 18px;
+        bottom: 88px;
+    }
+
+    .mobile-action-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1045;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        min-height: 64px;
+        border-top: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(16px);
+    }
+
+    .mobile-action-bar a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        color: var(--color-secondary);
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+
+    .mobile-action-bar a + a {
+        border-left: 1px solid var(--color-border);
+    }
+
+    .mobile-action-bar i {
+        color: var(--color-primary);
+    }
+
+    .mobile-action-bar a:last-child i {
+        color: var(--color-success);
+    }
 }
 
 @media (max-width: 575.98px) {
-  .brand-text strong {
-    font-size: 18px;
-  }
+    .container {
+        width: min(100% - 24px, 1320px);
+    }
 
-  .brand-text small {
-    font-size: 10px;
-  }
+    .site-brand__text strong {
+        font-size: 1.05rem;
+    }
 
-  .brand-icon {
-    width: 42px;
-    height: 42px;
-  }
+    .site-brand__text small {
+        font-size: 0.66rem;
+    }
 
-  .hero-section h1 {
-    font-size: 36px;
-  }
+    .hero-title {
+        font-size: clamp(2.1rem, 11vw, 2.55rem);
+        letter-spacing: -0.035em;
+    }
 
-  .hero-trust-grid {
-    grid-template-columns: 1fr;
-  }
+    .section-title {
+        font-size: 2rem;
+    }
 
-  .enquiry-card-header {
-    flex-direction: column;
-  }
+    .section-heading {
+        margin-bottom: 38px;
+    }
 
-  .floating-whatsapp {
-    right: 16px;
-    bottom: 16px;
-    width: 52px;
-    height: 52px;
-    font-size: 25px;
-  }
+    .hero-buttons,
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn,
+    .cta-buttons .btn {
+        width: 100%;
+    }
+
+    .brand-card {
+        min-height: 90px;
+        font-size: 18px;
+    }
+
+    .map-card {
+        min-height: 320px;
+    }
+
+    .enquiry-success-card {
+        padding: 42px 20px;
+    }
+
+    .enquiry-success-card .btn {
+        width: 100%;
+    }
+
+    .mobile-action-bar span {
+        display: none;
+    }
+
+    .mobile-action-bar i {
+        font-size: 1.2rem;
+    }
 }

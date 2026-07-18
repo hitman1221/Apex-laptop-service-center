@@ -1,0 +1,42 @@
+<section id="brands" class="brands-section section-padding">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-eyebrow">Brands We Service</span>
+
+            <h2 class="section-title">Laptop Brands We Commonly Work On</h2>
+
+            <p class="section-description">
+                We handle repair enquiries for many popular laptop brands.
+                Final service availability depends on the model, fault and spare-part availability.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            {% for brand in brands %}
+                <div
+                    class="col-xl-3 col-lg-3 col-md-4 col-6"
+                    data-aos="zoom-in"
+                    data-aos-delay="{{ loop.index0 * 50 }}"
+                >
+                    <article class="brand-card" aria-label="{{ brand.name }} laptop service">
+                        <span
+                            class="brand-mark {{ brand.class_name }}"
+                            aria-hidden="true"
+                        >
+                            {{ brand.mark }}
+                        </span>
+
+                        <h3>{{ brand.name }}</h3>
+
+                        <span class="brand-card__caption">Laptop service enquiries</span>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+
+        <p class="brands-note" data-aos="fade-up">
+            Brand names are used only to indicate devices commonly received for service.
+            Apex Laptop Service Center is an independent repair business.
+        </p>
+    </div>
+</section>

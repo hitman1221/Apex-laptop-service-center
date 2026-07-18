@@ -1,0 +1,75 @@
+<section id="about" class="about-section section-padding">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="about-card">
+                    <div class="experience-badge">
+                        <span>10</span>
+                        <small>Years in Business</small>
+                    </div>
+
+                    <div class="about-icon" aria-hidden="true">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                    </div>
+
+                    <div class="about-stats">
+                        <div>
+                            <strong>4.7 <span aria-hidden="true">★</span></strong>
+                            <span>Customer Rating</span>
+                        </div>
+
+                        <div>
+                            <strong>25</strong>
+                            <span>Listed Ratings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="section-eyebrow">About Us</span>
+
+                <h2 class="section-title">
+                    Laptop and Computer Repair Assistance in Kandivali East
+                </h2>
+
+                <p class="section-description text-start">
+                    {{ business.name }} handles laptop and computer repair enquiries
+                    in Kandivali East, Mumbai. Customers can contact us for charging,
+                    display, keyboard, software and hardware-related issues.
+                </p>
+
+                <p class="section-description text-start">
+                    Each device is inspected before the repair scope, expected timeline
+                    and applicable charges are confirmed with the customer.
+                </p>
+
+                <div class="about-features" aria-label="Repair services">
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Laptop Hardware Repair</div>
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Display and Screen Repair</div>
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Keyboard Replacement</div>
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Charging Port Repair</div>
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Software Troubleshooting</div>
+                    <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Motherboard Diagnosis</div>
+                </div>
+
+                <div class="about-actions mt-4">
+                    <a href="tel:{{ business.phone }}" class="btn btn-primary-custom">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        Call Now
+                    </a>
+
+                    <a
+                        href="{{ business.maps_url }}"
+                        class="btn btn-outline-dark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

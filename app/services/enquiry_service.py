@@ -21,9 +21,8 @@ class EnquiryService:
         name: str,
         phone: str,
         email: str | None,
-        pincode: str,
-        service: str | None,
-        message: str | None,
+        service: str,
+        message: str,
         source_page: str,
     ) -> Enquiry:
         """Validate, create and persist an enquiry."""
@@ -32,7 +31,6 @@ class EnquiryService:
             name=clean_text(name),
             phone=phone,
             email=normalize_email(email),
-            pincode=pincode,
             service=clean_text(service),
             message=clean_text(message),
             source_page=source_page,

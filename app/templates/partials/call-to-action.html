@@ -1,0 +1,56 @@
+<section id="call-to-action" class="cta-section">
+    <div class="container">
+        <div class="cta-card" data-aos="zoom-in">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="section-eyebrow">Need Laptop Repair?</span>
+
+                    <h2>Speak With Apex Laptop Service Center</h2>
+
+                    <p>
+                        Call us, send a WhatsApp message or submit the enquiry form.
+                        Repair scope, timeline and charges are confirmed after inspection.
+                    </p>
+
+                    <div class="cta-meta" aria-label="Business information">
+                        <span>
+                            <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                            {{ business.hours }}
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            Kandivali East, Mumbai
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cta-buttons">
+                        <a href="tel:{{ business.phone }}" class="btn cta-call-button">
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                            Call {{ business.phone }}
+                        </a>
+
+                        <a
+                            href="https://wa.me/{{ business.whatsapp_number }}?text=Hello%20Apex%20Laptop%20Service%20Center%2C%20I%20would%20like%20to%20enquire%20about%20a%20laptop%20repair."
+                            class="btn cta-whatsapp-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                            WhatsApp
+                        </a>
+
+                        <a
+                            href="{{ url_for('main.home') }}#enquiry-form"
+                            class="btn cta-enquiry-button"
+                        >
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            Send Enquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,24 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+{% extends "base.html" %}
 
-  <title>Thank You | Apex Laptop Service Center</title>
-</head>
-<body>
-  <main>
-    <h1>Thank you for contacting us.</h1>
+{% block title %}
+Thank You | {{ business.name }}
+{% endblock %}
 
-    <p>
-      Your enquiry has been received. Our service team will contact
-      you shortly.
-    </p>
+{% block meta_description %}
+Thank you for contacting {{ business.name }}. Your laptop service enquiry has been received successfully.
+{% endblock %}
 
-    <a href="/">Return to home</a>
-  </main>
-</body>
-</html>
+{% block content %}
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="text-center enquiry-success-card">
+
+                    <div class="success-icon mb-4">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <h1 class="mb-3">
+
+                        Thank You!
+
+                    </h1>
+
+                    <p class="lead mb-4">
+
+                        Your enquiry has been submitted successfully.
+
+                    </p>
+
+                    <p class="text-muted mb-5">
+
+                        Thank you for choosing
+                        <strong>{{ business.name }}</strong>.
+
+                        Our service team has received your request and will
+                        contact you shortly on the mobile number you provided.
+
+                    </p>
+
+                    <div
+                        class="d-flex flex-wrap justify-content-center gap-3"
+                    >
+
+                        <a
+                            href="{{ url_for('main.home') }}"
+                            class="btn btn-primary-custom btn-lg"
+                        >
+
+                            <i class="fa-solid fa-house"></i>
+
+                            Back to Home
+
+                        </a>
+
+                        <a
+                            href="tel:{{ business.phone }}"
+                            class="btn btn-outline-primary btn-lg"
+                        >
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            Call Now
+
+                        </a>
+
+                        <a
+                            href="https://wa.me/{{ business.whatsapp_number }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-success btn-lg"
+                        >
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            WhatsApp
+
+                        </a>
+
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="small text-muted">
+
+                        <p class="mb-1">
+
+                            <strong>Business Hours</strong>
+
+                        </p>
+
+                        <p class="mb-0">
+
+                            {{ business.hours }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

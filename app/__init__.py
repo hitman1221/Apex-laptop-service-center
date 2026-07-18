@@ -25,9 +25,13 @@ def create_app(config_name: str | None = None) -> Flask:
     )
 
     app = Flask(__name__)
-    app.config.from_object(
-        CONFIG_MAP.get(selected_config, CONFIG_MAP["default"])
+
+    config_class = CONFIG_MAP.get(
+        selected_config,
+        CONFIG_MAP["default"],
     )
+
+    app.config.from_object(config_class)
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -47,14 +51,21 @@ def register_template_context(app: Flask) -> None:
 
     @app.context_processor
     def inject_business_details() -> dict:
+        """Make business information available in all templates."""
+
         return {
             "business": {
                 "name": app.config["BUSINESS_NAME"],
                 "phone": app.config["BUSINESS_PHONE"],
+                "whatsapp_number": app.config[
+                    "BUSINESS_WHATSAPP_NUMBER"
+                ],
                 "email": app.config["BUSINESS_EMAIL"],
                 "address": app.config["BUSINESS_ADDRESS"],
                 "hours": app.config["BUSINESS_HOURS"],
-                "experience": app.config["BUSINESS_EXPERIENCE"],
+                "experience": app.config[
+                    "BUSINESS_EXPERIENCE"
+                ],
                 "rating": app.config["BUSINESS_RATING"],
                 "review_count": app.config[
                     "BUSINESS_REVIEW_COUNT"
@@ -62,8 +73,8 @@ def register_template_context(app: Flask) -> None:
                 "latitude": app.config["LATITUDE"],
                 "longitude": app.config["LONGITUDE"],
                 "maps_url": app.config["GOOGLE_MAPS_URL"],
-                "whatsapp_number": app.config[
-                    "WHATSAPP_NUMBER"
+                "maps_embed": app.config[
+                    "GOOGLE_MAPS_EMBED_URL"
                 ],
             }
         }

@@ -1,0 +1,46 @@
+<section id="faq" class="faq-section section-padding">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-eyebrow">Frequently Asked Questions</span>
+
+            <h2 class="section-title">Common Laptop Repair Questions</h2>
+
+            <p class="section-description">
+                Read answers to common questions about inspection, repair timelines,
+                charges and service availability.
+            </p>
+        </div>
+
+        <div class="accordion faq-accordion" id="faqAccordion">
+            {% for faq in faqs %}
+                <div
+                    class="accordion-item"
+                    data-aos="fade-up"
+                    data-aos-delay="{{ loop.index0 * 80 }}"
+                >
+                    <h3 class="accordion-header" id="faqHeading{{ loop.index }}">
+                        <button
+                            class="accordion-button {% if not loop.first %}collapsed{% endif %}"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqCollapse{{ loop.index }}"
+                            aria-expanded="{{ 'true' if loop.first else 'false' }}"
+                            aria-controls="faqCollapse{{ loop.index }}"
+                        >
+                            {{ faq.question }}
+                        </button>
+                    </h3>
+
+                    <div
+                        id="faqCollapse{{ loop.index }}"
+                        class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+                        aria-labelledby="faqHeading{{ loop.index }}"
+                        data-bs-parent="#faqAccordion"
+                    >
+                        <div class="accordion-body">{{ faq.answer }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

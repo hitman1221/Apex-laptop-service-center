@@ -1,0 +1,121 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="site-footer__grid">
+            <div class="site-footer__about">
+                <a
+                    class="site-brand site-brand--footer"
+                    href="{{ url_for('main.home') }}"
+                    aria-label="{{ business.name }} homepage"
+                >
+                    <span class="site-brand__icon">
+                        <i
+                            class="fa-solid fa-laptop-medical"
+                            aria-hidden="true"
+                        ></i>
+                    </span>
+
+                    <span class="site-brand__text">
+                        <strong>Apex</strong>
+                        <small>Laptop Service Center</small>
+                    </span>
+                </a>
+
+                <p>
+                    Submit an enquiry for laptop and computer repair
+                    requirements in Kandivali East, Mumbai.
+                </p>
+
+                <div class="site-footer__socials" aria-label="Contact links">
+                    <a
+                        href="tel:{{ business.phone }}"
+                        aria-label="Call {{ business.name }}"
+                        title="Call us"
+                    >
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    </a>
+
+                    <a
+                        href="mailto:{{ business.email }}"
+                        aria-label="Email {{ business.name }}"
+                        title="Send email"
+                    >
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+
+                    <a
+                        href="https://wa.me/{{ business.whatsapp_number }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Contact {{ business.name }} on WhatsApp"
+                        title="WhatsApp"
+                    >
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+
+                    <a
+                        href="{{ business.maps_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View {{ business.name }} on Google Maps"
+                        title="Google Maps"
+                    >
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="site-footer__heading">Quick Links</h2>
+
+                <ul class="site-footer__links">
+                    <li><a href="{{ url_for('main.home') }}#about">About</a></li>
+                    <li><a href="{{ url_for('main.home') }}#services">Services</a></li>
+                    <li><a href="{{ url_for('main.home') }}#process">Repair Process</a></li>
+                    <li><a href="{{ url_for('main.home') }}#faq">FAQ</a></li>
+                    <li><a href="{{ url_for('main.home') }}#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="site-footer__heading">Contact</h2>
+
+                <ul class="site-footer__contact">
+                    <li>
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <a href="tel:{{ business.phone }}">{{ business.phone }}</a>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:{{ business.email }}">{{ business.email }}</a>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <a
+                            href="{{ business.maps_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {{ business.address }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        <span>{{ business.hours }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="site-footer__bottom">
+            <p>
+                &copy; <span data-current-year></span>
+                {{ business.name }}. All rights reserved.
+            </p>
+
+            <p>Service availability and charges are subject to confirmation.</p>
+        </div>
+    </div>
+</footer>

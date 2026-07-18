@@ -15,10 +15,7 @@ from wtforms.validators import (
     Optional,
 )
 
-from app.utils.validators import (
-    validate_indian_phone,
-    validate_indian_pincode,
-)
+from app.utils.validators import validate_indian_phone
 
 
 SERVICE_CHOICES = [
@@ -27,7 +24,10 @@ SERVICE_CHOICES = [
     ("Laptop Not Charging", "Laptop Not Charging"),
     ("Laptop Display Repair", "Laptop Display Repair"),
     ("Laptop Keyboard Repair", "Laptop Keyboard Repair"),
-    ("Laptop Overheating Repair", "Laptop Overheating Repair"),
+    (
+        "Laptop Overheating Repair",
+        "Laptop Overheating Repair",
+    ),
     (
         "Software and OS Repair",
         "Software and OS Repair",
@@ -38,7 +38,10 @@ SERVICE_CHOICES = [
         "Laptop Unlocking Assistance",
         "Laptop Unlocking Assistance",
     ),
-    ("Other Repair Requirement", "Other Repair Requirement"),
+    (
+        "Other Repair Requirement",
+        "Other Repair Requirement",
+    ),
 ]
 
 
@@ -48,11 +51,16 @@ class EnquiryForm(FlaskForm):
     name = StringField(
         "Full Name",
         validators=[
-            DataRequired(message="Enter your full name."),
+            DataRequired(
+                message="Please enter your full name."
+            ),
             Length(
                 min=2,
                 max=100,
-                message="Name must contain 2 to 100 characters.",
+                message=(
+                    "Full name must contain "
+                    "2 to 100 characters."
+                ),
             ),
         ],
         render_kw={
@@ -64,7 +72,9 @@ class EnquiryForm(FlaskForm):
     phone = StringField(
         "Mobile Number",
         validators=[
-            DataRequired(message="Enter your mobile number."),
+            DataRequired(
+                message="Please enter your mobile number."
+            ),
             validate_indian_phone,
         ],
         render_kw={
@@ -79,42 +89,48 @@ class EnquiryForm(FlaskForm):
         "Email Address",
         validators=[
             Optional(),
-            Email(message="Enter a valid email address."),
-            Length(max=255),
+            Email(
+                message="Please enter a valid email address."
+            ),
+            Length(
+                max=255,
+                message=(
+                    "Email address cannot exceed "
+                    "255 characters."
+                ),
+            ),
         ],
         render_kw={
-            "placeholder": "Enter your email address (optional)",
+            "placeholder": (
+                "Enter your email address (optional)"
+            ),
             "autocomplete": "email",
-        },
-    )
-
-    pincode = StringField(
-        "PIN Code",
-        validators=[
-            DataRequired(message="Enter your PIN code."),
-            validate_indian_pincode,
-        ],
-        render_kw={
-            "placeholder": "Enter 6-digit PIN code",
-            "autocomplete": "postal-code",
-            "inputmode": "numeric",
-            "maxlength": "6",
         },
     )
 
     service = SelectField(
         "Required Service",
         choices=SERVICE_CHOICES,
-        validators=[Optional()],
+        validators=[
+            DataRequired(
+                message="Please select the required service."
+            )
+        ],
     )
 
     message = TextAreaField(
         "Describe the Issue",
         validators=[
-            Optional(),
+            DataRequired(
+                message="Please describe your laptop issue."
+            ),
             Length(
+                min=10,
                 max=1000,
-                message="Message cannot exceed 1000 characters.",
+                message=(
+                    "Issue description must contain "
+                    "10 to 1000 characters."
+                ),
             ),
         ],
         render_kw={

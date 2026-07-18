@@ -1,0 +1,98 @@
+<section id="contact" class="contact-section section-padding">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-eyebrow">Contact Us</span>
+
+            <h2 class="section-title">Visit or Contact {{ business.name }}</h2>
+
+            <p class="section-description">
+                Call, message or visit the service centre during business hours
+                for laptop repair enquiries.
+            </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Address</h3>
+                            <p>{{ business.address }}</p>
+                            <a
+                                href="{{ business.maps_url }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Open in Google Maps
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Phone</h3>
+                            <a href="tel:{{ business.phone }}">{{ business.phone }}</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Email</h3>
+                            <a href="mailto:{{ business.email }}">{{ business.email }}</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Business Hours</h3>
+                            <p>{{ business.hours }}</p>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="contact-actions">
+                        <a href="tel:{{ business.phone }}" class="btn btn-primary-custom">
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                            Call Now
+                        </a>
+
+                        <a
+                            href="https://wa.me/{{ business.whatsapp_number }}?text=Hello%20Apex%20Laptop%20Service%20Center%2C%20I%20need%20help%20with%20a%20laptop%20repair."
+                            class="btn btn-outline-success"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="map-card">
+                    <iframe
+                        src="{{ business.maps_embed }}"
+                        loading="lazy"
+                        allowfullscreen
+                        title="{{ business.name }} location on Google Maps"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

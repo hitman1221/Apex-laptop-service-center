@@ -1,0 +1,33 @@
+<section id="why-choose-us" class="why-section section-padding">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-eyebrow">Why Choose Us</span>
+
+            <h2 class="section-title">A Clear and Structured Service Experience</h2>
+
+            <p class="section-description">
+                We focus on inspection, clear communication and confirmation before
+                proceeding with the repair work.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for item in why_choose_us %}
+                <div
+                    class="col-lg-3 col-md-6"
+                    data-aos="fade-up"
+                    data-aos-delay="{{ loop.index0 * 100 }}"
+                >
+                    <article class="why-card">
+                        <div class="why-icon" aria-hidden="true">
+                            <i class="fa-solid {{ item.icon }}"></i>
+                        </div>
+
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

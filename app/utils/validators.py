@@ -6,7 +6,6 @@ from wtforms import ValidationError
 
 
 INDIAN_PHONE_PATTERN = re.compile(r"^[6-9]\d{9}$")
-PINCODE_PATTERN = re.compile(r"^[1-9]\d{5}$")
 
 
 def validate_indian_phone(_form, field) -> None:
@@ -23,16 +22,3 @@ def validate_indian_phone(_form, field) -> None:
         )
 
     field.data = phone
-
-
-def validate_indian_pincode(_form, field) -> None:
-    """Validate a six-digit Indian postal PIN code."""
-
-    pincode = (field.data or "").strip()
-
-    if not PINCODE_PATTERN.fullmatch(pincode):
-        raise ValidationError(
-            "Enter a valid 6-digit PIN code."
-        )
-
-    field.data = pincode

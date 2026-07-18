@@ -1,0 +1,35 @@
+<section id="process" class="process-section section-padding">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-eyebrow">Repair Process</span>
+
+            <h2 class="section-title">How the Repair Process Works</h2>
+
+            <p class="section-description">
+                A simple four-step flow from the initial enquiry to final testing
+                and device handover.
+            </p>
+        </div>
+
+        <div class="row g-4 process-grid">
+            {% for step in repair_process %}
+                <div
+                    class="col-lg-3 col-md-6 process-grid__item"
+                    data-aos="fade-up"
+                    data-aos-delay="{{ loop.index0 * 120 }}"
+                >
+                    <article class="process-card">
+                        <div class="process-number" aria-hidden="true">{{ step.step }}</div>
+
+                        <div class="process-icon" aria-hidden="true">
+                            <i class="fa-solid {{ step.icon }}"></i>
+                        </div>
+
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.description }}</p>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

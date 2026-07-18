@@ -10,33 +10,36 @@ class Enquiry(db.Model):
 
     __tablename__ = "enquiries"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+    )
 
     name = db.Column(
         db.String(100),
         nullable=False,
     )
+
     phone = db.Column(
         db.String(20),
         nullable=False,
         index=True,
     )
+
     email = db.Column(
         db.String(255),
         nullable=True,
         index=True,
     )
-    pincode = db.Column(
-        db.String(10),
-        nullable=False,
-    )
+
     service = db.Column(
         db.String(120),
-        nullable=True,
+        nullable=False,
     )
+
     message = db.Column(
         db.Text,
-        nullable=True,
+        nullable=False,
     )
 
     status = db.Column(
@@ -45,6 +48,7 @@ class Enquiry(db.Model):
         default="new",
         index=True,
     )
+
     source_page = db.Column(
         db.String(255),
         nullable=False,
@@ -57,6 +61,7 @@ class Enquiry(db.Model):
         default=lambda: datetime.now(timezone.utc),
         index=True,
     )
+
     updated_at = db.Column(
         db.DateTime(timezone=True),
         nullable=False,
@@ -67,5 +72,6 @@ class Enquiry(db.Model):
     def __repr__(self) -> str:
         return (
             f"<Enquiry id={self.id} "
-            f"name={self.name!r} status={self.status!r}>"
+            f"name={self.name!r} "
+            f"status={self.status!r}>"
         )

@@ -1,7 +1,6 @@
 """Application configuration."""
 
 import os
-from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -40,78 +39,140 @@ def normalize_database_url(database_url: str | None) -> str:
 class Config:
     """Base application configuration."""
 
-    SECRET_KEY = os.getenv("SECRET_KEY", "change-this-in-production")
+    # ------------------------------------------------------------------
+    # Core application settings
+    # ------------------------------------------------------------------
+
+    SECRET_KEY = os.getenv(
+        "SECRET_KEY",
+        "change-this-in-production",
+    )
+
+    # ------------------------------------------------------------------
+    # Database
+    # ------------------------------------------------------------------
 
     SQLALCHEMY_DATABASE_URI = normalize_database_url(
         os.getenv("DATABASE_URL")
     )
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
     SQLALCHEMY_ENGINE_OPTIONS = {
         "pool_pre_ping": True,
         "pool_recycle": 280,
     }
 
+    # ------------------------------------------------------------------
+    # CSRF protection
+    # ------------------------------------------------------------------
+
     WTF_CSRF_ENABLED = True
-    WTF_CSRF_TIME_LIMIT = timedelta(hours=2)
+
+    # Time must be supplied in seconds.
+    # 7200 seconds = 2 hours.
+    WTF_CSRF_TIME_LIMIT = 7200
+
+    # ------------------------------------------------------------------
+    # Session and cookie settings
+    # ------------------------------------------------------------------
 
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
+
     SESSION_COOKIE_SECURE = (
-        os.getenv("SESSION_COOKIE_SECURE", "false").lower() == "true"
+        os.getenv("SESSION_COOKIE_SECURE", "false").lower()
+        == "true"
     )
+
+    # ------------------------------------------------------------------
+    # Business information
+    # ------------------------------------------------------------------
 
     BUSINESS_NAME = os.getenv(
         "BUSINESS_NAME",
         "Apex Laptop Service Center",
     )
+
     BUSINESS_PHONE = os.getenv(
         "BUSINESS_PHONE",
         "08460450742",
     )
+
+    BUSINESS_WHATSAPP_NUMBER = os.getenv(
+        "BUSINESS_WHATSAPP_NUMBER",
+        "917021161621",
+    )
+
     BUSINESS_EMAIL = os.getenv(
         "BUSINESS_EMAIL",
-        "support@example.com",
+        "apexlaptopsolution@gmail.com",
     )
+
     BUSINESS_ADDRESS = os.getenv(
         "BUSINESS_ADDRESS",
         (
             "101, Shree Samarth CHSL, Hanuman Nagar, "
             "Mahindra Yellow Gate, Akurli Road, "
-            "Kandivali East, Mumbai 400101, Maharashtra"
+            "Kandivali East, Mumbai - 400101"
         ),
     )
+
     BUSINESS_HOURS = os.getenv(
         "BUSINESS_HOURS",
-        "Daily, 9:00 AM – 8:00 PM",
+        "Daily, 9:00 AM - 8:00 PM",
     )
+
     BUSINESS_EXPERIENCE = os.getenv(
         "BUSINESS_EXPERIENCE",
         "10 Years in Business",
     )
+
     BUSINESS_RATING = os.getenv(
         "BUSINESS_RATING",
         "4.7",
     )
+
     BUSINESS_REVIEW_COUNT = os.getenv(
         "BUSINESS_REVIEW_COUNT",
         "25",
     )
 
-    LATITUDE = os.getenv("LATITUDE", "19.200944")
-    LONGITUDE = os.getenv("LONGITUDE", "72.865778")
+    # ------------------------------------------------------------------
+    # Google Maps
+    # ------------------------------------------------------------------
+
+    LATITUDE = os.getenv(
+        "LATITUDE",
+        "19.200944",
+    )
+
+    LONGITUDE = os.getenv(
+        "LONGITUDE",
+        "72.865778",
+    )
 
     GOOGLE_MAPS_URL = os.getenv(
         "GOOGLE_MAPS_URL",
         (
-            "https://www.google.com/maps/search/"
-            "?api=1&query=19.200944,72.865778"
+            "https://maps.app.goo.gl/"
+            "JJrMb7CbNRCX5PVAA?g_st=ac"
         ),
     )
 
-    WHATSAPP_NUMBER = os.getenv(
-        "WHATSAPP_NUMBER",
-        "918460450742",
+    GOOGLE_MAPS_EMBED_URL = os.getenv(
+        "GOOGLE_MAPS_EMBED_URL",
+        (
+            "https://maps.google.com/maps?"
+            "q=19.200944,72.865778"
+            "&z=17"
+            "&output=embed"
+        ),
     )
+
+    # ------------------------------------------------------------------
+    # Upload limits
+    # ------------------------------------------------------------------
 
     MAX_CONTENT_LENGTH = 2 * 1024 * 1024
 

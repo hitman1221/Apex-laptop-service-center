@@ -36,6 +36,17 @@ def normalize_database_url(database_url: str | None) -> str:
     return database_url
 
 
+def env_to_bool(variable_name: str, default: str = "false") -> bool:
+    """Convert an environment variable into a Boolean value."""
+
+    return (
+        os.getenv(variable_name, default)
+        .strip()
+        .lower()
+        in {"true", "1", "yes", "on"}
+    )
+
+
 class Config:
     """Base application configuration."""
 
@@ -68,9 +79,6 @@ class Config:
     # ------------------------------------------------------------------
 
     WTF_CSRF_ENABLED = True
-
-    # Time must be supplied in seconds.
-    # 7200 seconds = 2 hours.
     WTF_CSRF_TIME_LIMIT = 7200
 
     # ------------------------------------------------------------------
@@ -79,10 +87,9 @@ class Config:
 
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
-
-    SESSION_COOKIE_SECURE = (
-        os.getenv("SESSION_COOKIE_SECURE", "false").lower()
-        == "true"
+    SESSION_COOKIE_SECURE = env_to_bool(
+        "SESSION_COOKIE_SECURE",
+        "false",
     )
 
     # ------------------------------------------------------------------
@@ -175,6 +182,57 @@ class Config:
     # ------------------------------------------------------------------
 
     MAX_CONTENT_LENGTH = 2 * 1024 * 1024
+
+    # ------------------------------------------------------------------
+    # Transactional email
+    # ------------------------------------------------------------------
+
+    MAIL_SERVER = os.getenv(
+        "MAIL_SERVER",
+        "smtp-relay.brevo.com",
+    )
+
+    MAIL_PORT = int(
+        os.getenv("MAIL_PORT", "587")
+    )
+
+    MAIL_USE_TLS = env_to_bool(
+        "MAIL_USE_TLS",
+        "true",
+    )
+
+    MAIL_USE_SSL = env_to_bool(
+        "MAIL_USE_SSL",
+        "false",
+    )
+
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+
+    MAIL_DEFAULT_SENDER_NAME = os.getenv(
+        "MAIL_DEFAULT_SENDER_NAME",
+        "Apex Laptop Service Center",
+    )
+
+    MAIL_DEFAULT_SENDER_EMAIL = os.getenv(
+        "MAIL_DEFAULT_SENDER_EMAIL",
+        "apexlaptopsolution@gmail.com",
+    )
+
+    
+    MAIL_DEFAULT_SENDER = (
+        MAIL_DEFAULT_SENDER_NAME,
+        MAIL_DEFAULT_SENDER_EMAIL,
+    )
+
+    ENQUIRY_RECIPIENT_EMAIL = os.getenv(
+        "ENQUIRY_RECIPIENT_EMAIL"
+    )
+
+    SEND_CUSTOMER_CONFIRMATION_EMAIL = env_to_bool(
+        "SEND_CUSTOMER_CONFIRMATION_EMAIL",
+        "true",
+    )
 
 
 class DevelopmentConfig(Config):

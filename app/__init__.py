@@ -3,6 +3,7 @@
 import os
 
 from flask import Flask
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
@@ -13,6 +14,7 @@ from config import CONFIG_MAP
 db = SQLAlchemy()
 migrate = Migrate()
 csrf = CSRFProtect()
+mail = Mail()
 
 
 def create_app(config_name: str | None = None) -> Flask:
@@ -36,6 +38,7 @@ def create_app(config_name: str | None = None) -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
+    mail.init_app(app)
 
     from app.routes import main_bp
 

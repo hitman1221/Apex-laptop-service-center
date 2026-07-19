@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>New Website Enquiry</title>
+</head>
+
+<body
+    style="
+        margin: 0;
+        padding: 0;
+        background-color: #f4f6f8;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #222222;
+    "
+>
+    <table
+        role="presentation"
+        width="100%"
+        cellpadding="0"
+        cellspacing="0"
+        border="0"
+        style="background-color: #f4f6f8;"
+    >
+        <tr>
+            <td
+                align="center"
+                style="padding: 24px 12px;"
+            >
+                <table
+                    role="presentation"
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                    style="
+                        max-width: 650px;
+                        background-color: #ffffff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 12px;
+                        overflow: hidden;
+                    "
+                >
+
+                    <!-- Header -->
+
+                    <tr>
+                        <td
+                            style="
+                                background-color: #dc3545;
+                                color: #ffffff;
+                                padding: 28px 24px;
+                            "
+                        >
+                            <h1
+                                style="
+                                    margin: 0;
+                                    font-size: 26px;
+                                    font-weight: 700;
+                                "
+                            >
+                                New Website Enquiry
+                            </h1>
+
+                            <p
+                                style="
+                                    margin: 8px 0 0;
+                                    font-size: 15px;
+                                    color: #ffecec;
+                                "
+                            >
+                                A customer has submitted a new enquiry
+                                through the website.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Body -->
+
+                    <tr>
+                        <td
+                            style="
+                                padding: 28px;
+                                font-size: 16px;
+                                line-height: 1.7;
+                            "
+                        >
+
+                            <table
+                                width="100%"
+                                cellpadding="10"
+                                cellspacing="0"
+                                style="
+                                    border-collapse: collapse;
+                                    border: 1px solid #e5e7eb;
+                                "
+                            >
+
+                                <tr>
+                                    <td
+                                        width="180"
+                                        style="
+                                            background: #f8fafc;
+                                            font-weight: bold;
+                                        "
+                                    >
+                                        Customer Name
+                                    </td>
+
+                                    <td>
+                                        {{ enquiry.name }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="
+                                            background: #f8fafc;
+                                            font-weight: bold;
+                                        "
+                                    >
+                                        Mobile Number
+                                    </td>
+
+                                    <td>
+                                        {{ enquiry.phone }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="
+                                            background: #f8fafc;
+                                            font-weight: bold;
+                                        "
+                                    >
+                                        Email Address
+                                    </td>
+
+                                    <td>
+                                        {{ enquiry.email or "Not Provided" }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="
+                                            background: #f8fafc;
+                                            font-weight: bold;
+                                        "
+                                    >
+                                        Required Service
+                                    </td>
+
+                                    <td>
+                                        {{ enquiry.service }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        valign="top"
+                                        style="
+                                            background: #f8fafc;
+                                            font-weight: bold;
+                                        "
+                                    >
+                                        Customer Message
+                                    </td>
+
+                                    <td>
+                                        {{ enquiry.message }}
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <div
+                                style="
+                                    margin-top: 28px;
+                                    padding: 18px;
+                                    background: #fff8e6;
+                                    border-left: 5px solid #ffc107;
+                                    border-radius: 6px;
+                                "
+                            >
+                                <strong>Action Required</strong>
+
+                                <p
+                                    style="
+                                        margin: 10px 0 0;
+                                    "
+                                >
+                                    Please contact the customer as
+                                    soon as possible and update the
+                                    enquiry status in your records.
+                                </p>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+
+                    <tr>
+                        <td
+                            align="center"
+                            style="
+                                background: #f8fafc;
+                                border-top: 1px solid #e5e7eb;
+                                padding: 18px;
+                                font-size: 13px;
+                                color: #6b7280;
+                            "
+                        >
+                            This email was automatically generated by
+                            the Apex Laptop Service Center website.
+                        </td>
+                    </tr>
+
+                </table>
+
+                <p
+                    style="
+                        margin-top: 16px;
+                        font-size: 12px;
+                        color: #9ca3af;
+                    "
+                >
+                    © Apex Laptop Service Center. All rights reserved.
+                </p>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

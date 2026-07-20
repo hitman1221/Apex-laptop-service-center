@@ -191,17 +191,11 @@
                     href="{{ url_for('main.home') }}"
                     aria-label="{{ business.name }} homepage"
                 >
-                    <span class="site-brand__icon">
-                        <i
-                            class="fa-solid fa-laptop-medical"
-                            aria-hidden="true"
-                        ></i>
-                    </span>
-
-                    <span class="site-brand__text">
-                        <strong>Apex</strong>
-                        <small>Laptop Service Center</small>
-                    </span>
+                    <img
+                        src="{{ url_for('static', filename='images/logo.png') }}"
+                        alt="Apex Laptop Service Center"
+                        class="site-brand__logo"
+                    >
                 </a>
 
                 <button

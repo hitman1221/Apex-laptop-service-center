@@ -121,9 +121,8 @@
         min-height: 72px;
     }
 
-    .site-brand__icon {
-        width: 42px;
-        height: 42px;
+    .site-brand__logo {
+        height: 38px;
     }
 
     .hero-section {
@@ -243,12 +242,8 @@
         width: min(100% - 24px, 1320px);
     }
 
-    .site-brand__text strong {
-        font-size: 1.05rem;
-    }
-
-    .site-brand__text small {
-        font-size: 0.66rem;
+    .site-brand__logo {
+        height: 34px;
     }
 
     .hero-title {

@@ -1,0 +1,38 @@
+<section id="testimonials" class="testimonial-section section-padding py-5" style="background-color: var(--color-white);">
+    <div class="container">
+        <div class="section-heading text-center mb-5" data-aos="fade-up">
+            <span class="section-eyebrow">Reviews</span>
+            <h2 class="section-title">Why Our Customer Recommend Us</h2>
+            <p class="section-description mx-auto" style="max-width: 600px;">
+                Read real feedback from customers who have serviced their laptops with us.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            {% for testimonial in testimonials %}
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars mb-2">
+                            {% for _ in range(testimonial.rating) %}
+                                <i class="fa-solid fa-star"></i>
+                            {% endfor %}
+                            <i class="fa-solid fa-circle-check ms-1 text-success" style="font-size: 0.9rem;" title="Verified Customer"></i>
+                        </div>
+                        
+                        <p class="testimonial-text">{{ testimonial.text }}</p>
+                        
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                {{ testimonial.initial }}
+                            </div>
+                            <div class="testimonial-info">
+                                <h4 class="mb-0">{{ testimonial.author }}</h4>
+                                <span class="small text-muted">{{ testimonial.time }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

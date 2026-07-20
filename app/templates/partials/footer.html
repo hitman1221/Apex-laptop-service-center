@@ -7,17 +7,11 @@
                     href="{{ url_for('main.home') }}"
                     aria-label="{{ business.name }} homepage"
                 >
-                    <span class="site-brand__icon">
-                        <i
-                            class="fa-solid fa-laptop-medical"
-                            aria-hidden="true"
-                        ></i>
-                    </span>
-
-                    <span class="site-brand__text">
-                        <strong>Apex</strong>
-                        <small>Laptop Service Center</small>
-                    </span>
+                    <img
+                        src="{{ url_for('static', filename='images/logo.png') }}"
+                        alt="Apex Laptop Service Center"
+                        class="site-brand__logo site-brand__logo--footer"
+                    >
                 </a>
 
                 <p>
@@ -50,6 +44,16 @@
                         title="WhatsApp"
                     >
                         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/share/r/18zqMHAbEQ/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Contact {{ business.name }} on Facebook"
+                        title="Facebook"
+                    >
+                        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                     </a>
 
                     <a

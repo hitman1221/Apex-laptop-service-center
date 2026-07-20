@@ -103,7 +103,7 @@ class Config:
 
     BUSINESS_PHONE = os.getenv(
         "BUSINESS_PHONE",
-        "08460450742",
+        "7021161621",
     )
 
     BUSINESS_WHATSAPP_NUMBER = os.getenv(
@@ -162,8 +162,8 @@ class Config:
     GOOGLE_MAPS_URL = os.getenv(
         "GOOGLE_MAPS_URL",
         (
-            "https://maps.app.goo.gl/"
-            "JJrMb7CbNRCX5PVAA?g_st=ac"
+            "https://www.google.com/maps/search/"
+            "?api=1&query=Apex+Laptop+Service+Center+Hanuman+Nagar+Kandivali+East"
         ),
     )
 

@@ -14,9 +14,11 @@ from app.content import (
     BRANDS,
     BUSINESS_HIGHLIGHTS,
     FAQS,
+    OTHER_BRANDS,
     PROCESS_STEPS,
     REPAIR_PROCESS,
     SERVICES,
+    TESTIMONIALS,
     WHY_CHOOSE_US,
 )
 from app.forms import EnquiryForm
@@ -93,6 +95,8 @@ def home():
         why_choose_us=WHY_CHOOSE_US,
         repair_process=REPAIR_PROCESS,
         faqs=FAQS,
+        other_brands=OTHER_BRANDS,
+        testimonials=TESTIMONIALS,
     )
 
 

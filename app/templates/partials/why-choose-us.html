@@ -1,33 +1,96 @@
-<section id="why-choose-us" class="why-section section-padding">
+<section id="why-choose-us" class="why-section section-padding py-5">
     <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-            <span class="section-eyebrow">Why Choose Us</span>
-
-            <h2 class="section-title">A Clear and Structured Service Experience</h2>
-
-            <p class="section-description">
-                We focus on inspection, clear communication and confirmation before
-                proceeding with the repair work.
+        <div class="section-heading text-center" data-aos="fade-up">
+            <span class="section-eyebrow">Comparison</span>
+            <h2 class="section-title">Stop Paying More for Less. Choose {{ business.name }}</h2>
+            <p class="section-description mx-auto" style="max-width: 700px;">
+                See how our services and features compare with authorized laptop service centers.
             </p>
         </div>
 
-        <div class="row g-4">
-            {% for item in why_choose_us %}
-                <div
-                    class="col-lg-3 col-md-6"
-                    data-aos="fade-up"
-                    data-aos-delay="{{ loop.index0 * 100 }}"
-                >
-                    <article class="why-card">
-                        <div class="why-icon" aria-hidden="true">
-                            <i class="fa-solid {{ item.icon }}"></i>
+        <div class="comparison-container" data-aos="fade-up">
+            <div class="row g-4 justify-content-center">
+                <!-- Features List Card (Desktop only) -->
+                <div class="col-md-4 d-none d-md-block">
+                    <div class="comparison-card comparison-card--features">
+                        <div class="comparison-header">
+                            <h3 style="color: transparent; user-select: none;">Features</h3>
                         </div>
-
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.description }}</p>
-                    </article>
+                        <div class="comparison-row-item comparison-row-item--feature">Free Pickup &amp; Drop</div>
+                        <div class="comparison-row-item comparison-row-item--feature">Expert Technicians</div>
+                        <div class="comparison-row-item comparison-row-item--feature">1 Year Warranty</div>
+                        <div class="comparison-row-item comparison-row-item--feature">Affordable</div>
+                        <div class="comparison-row-item comparison-row-item--feature">Quality Spares</div>
+                        <div class="comparison-row-item comparison-row-item--feature">Free Diagnosis</div>
+                    </div>
                 </div>
-            {% endfor %}
+
+                <!-- Authorized Service Center Column -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="comparison-card comparison-card--navy">
+                        <div class="comparison-header">
+                            <h3>Authorise Serviced Center</h3>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Free Pickup &amp; Drop: </span>
+                            <i class="fa-solid fa-xmark" aria-hidden="true" title="No"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Expert Technicians: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">1 Year Warranty: </span>
+                            <i class="fa-solid fa-xmark" aria-hidden="true" title="No"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Affordable: </span>
+                            <i class="fa-solid fa-xmark" aria-hidden="true" title="No"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Quality Spares: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Free Diagnosis: </span>
+                            <i class="fa-solid fa-xmark" aria-hidden="true" title="No"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apex Laptop Service Center Column -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="comparison-card comparison-card--nss">
+                        <div class="comparison-header">
+                            <h3>{{ business.name }}</h3>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Free Pickup &amp; Drop: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Expert Technicians: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">1 Year Warranty: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Affordable: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Quality Spares: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                        <div class="comparison-row-item">
+                            <span class="d-md-none me-2 fw-bold">Free Diagnosis: </span>
+                            <i class="fa-solid fa-check" aria-hidden="true" title="Yes"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

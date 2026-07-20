@@ -18,18 +18,43 @@
                     data-aos="zoom-in"
                     data-aos-delay="{{ loop.index0 * 50 }}"
                 >
+                    {% if brand.name == 'Other Brands' %}
+                    <article 
+                        class="brand-card brand-card--clickable" 
+                        aria-label="Other laptop brands we service"
+                        data-bs-toggle="modal"
+                        data-bs-target="#otherBrandsModal"
+                        role="button"
+                    >
+                        <span
+                            class="brand-mark {{ brand.class_name }}"
+                            aria-hidden="true"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+
+                        <h3>{{ brand.name }}</h3>
+
+                        <span class="brand-card__caption">Click to view list</span>
+                    </article>
+                    {% else %}
                     <article class="brand-card" aria-label="{{ brand.name }} laptop service">
                         <span
                             class="brand-mark {{ brand.class_name }}"
                             aria-hidden="true"
                         >
-                            {{ brand.mark }}
+                            {% if brand.name == 'Apple' %}
+                                <i class="fa-brands fa-apple"></i>
+                            {% else %}
+                                {{ brand.mark }}
+                            {% endif %}
                         </span>
 
                         <h3>{{ brand.name }}</h3>
 
                         <span class="brand-card__caption">Laptop service enquiries</span>
                     </article>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
@@ -40,3 +65,55 @@
         </p>
     </div>
 </section>
+
+<!-- Other Brands Modal -->
+<div 
+    class="modal fade" 
+    id="otherBrandsModal" 
+    tabindex="-1" 
+    aria-labelledby="otherBrandsModalLabel" 
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 24px; overflow: hidden;">
+            <div class="modal-header border-0 pb-0" style="padding: 24px 24px 10px;">
+                <div>
+                    <h5 class="modal-title h4 fw-bold mb-1" id="otherBrandsModalLabel" style="color: var(--color-secondary);">
+                        Other Laptop Brands We Service
+                    </h5>
+                    <p class="text-muted small mb-0">We accept repair enquiries for these popular models</p>
+                </div>
+                <button 
+                    type="button" 
+                    class="btn-close" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close"
+                    style="box-shadow: none;"
+                ></button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <div class="row g-4 justify-content-center">
+                    {% for other_brand in other_brands %}
+                        <div class="col-lg-3 col-md-4 col-6 text-center">
+                            <div class="brand-card p-3 mb-2" style="min-height: auto; border: 1px solid var(--color-border); border-radius: 20px; box-shadow: none;">
+                                <span class="brand-mark {{ other_brand.class_name }} mb-2 mx-auto" aria-hidden="true">
+                                    {% if other_brand.icon %}
+                                        <i class="{{ other_brand.icon }}"></i>
+                                    {% else %}
+                                        {{ other_brand.mark }}
+                                    {% endif %}
+                                </span>
+                                <h4 class="h6 fw-bold mb-0" style="color: var(--color-secondary); font-size: 0.92rem;">{{ other_brand.name }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer border-0 bg-light" style="padding: 16px 24px;">
+                <p class="small text-muted mb-0 w-100 text-center">
+                    Don't see your brand? <a href="#contact" data-bs-dismiss="modal" style="color: var(--color-primary); font-weight: 600;">Contact us</a> to confirm service availability.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

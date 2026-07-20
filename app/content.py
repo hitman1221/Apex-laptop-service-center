@@ -61,3 +61,20 @@ REPAIR_PROCESS=[
 {"step":"03","icon":"fa-screwdriver-wrench","title":"Repair","description":"Required repair work is carried out after confirmation."},
 {"step":"04","icon":"fa-circle-check","title":"Testing and Delivery","description":"The device is tested before delivery."},
 ]
+
+OTHER_BRANDS = [
+    {"name": "Microsoft Surface", "mark": "Microsoft", "icon": "fa-brands fa-microsoft", "class_name": "brand-mark--microsoft"},
+    {"name": "MSI Gaming", "mark": "msi", "icon": None, "class_name": "brand-mark--msi"},
+    {"name": "Razer Blade", "mark": "RAZER", "icon": None, "class_name": "brand-mark--razer"},
+    {"name": "Sony VAIO", "mark": "SONY", "icon": None, "class_name": "brand-mark--sony"},
+    {"name": "Toshiba", "mark": "TOSHIBA", "icon": None, "class_name": "brand-mark--toshiba"},
+    {"name": "LG Gram", "mark": "LG", "icon": None, "class_name": "brand-mark--lg"},
+    {"name": "Xiaomi Mi", "mark": "Xiaomi", "icon": None, "class_name": "brand-mark--xiaomi"},
+    {"name": "Huawei MateBook", "mark": "HUAWEI", "icon": None, "class_name": "brand-mark--huawei"},
+]
+
+TESTIMONIALS = [
+    {"author": "Sunil Kumar", "text": "Excellent services", "rating": 5, "time": "7 months ago", "initial": "S"},
+    {"author": "rakshith manaloor", "text": "Very fast and reliable service. The device agent Shivam was very knowledgeable and patient. Good service.", "rating": 5, "time": "8 months ago", "initial": "R"},
+    {"author": "sandeep rawat", "text": "Excellent Service", "rating": 5, "time": "8 months ago", "initial": "S"}
+]

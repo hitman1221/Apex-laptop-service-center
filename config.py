@@ -101,15 +101,9 @@ class Config:
         "Apex Laptop Service Center",
     )
 
-    BUSINESS_PHONE = os.getenv(
-        "BUSINESS_PHONE",
-        "7021161621",
-    )
+    BUSINESS_PHONE = "7021161621"
 
-    BUSINESS_WHATSAPP_NUMBER = os.getenv(
-        "BUSINESS_WHATSAPP_NUMBER",
-        "917021161621",
-    )
+    BUSINESS_WHATSAPP_NUMBER = "917021161621"
 
     BUSINESS_EMAIL = os.getenv(
         "BUSINESS_EMAIL",

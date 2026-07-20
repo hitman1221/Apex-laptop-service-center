@@ -46,6 +46,9 @@ def create_app(config_name: str | None = None) -> Flask:
 
     register_template_context(app)
 
+    with app.app_context():
+        db.create_all()
+
     return app
 
 

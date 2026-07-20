@@ -122,6 +122,19 @@ def health():
 def db_check():
     """Diagnostic route to test live database connection and operations."""
     try:
+        # Inspect existing tables
+        inspector = db.inspect(db.engine)
+        initial_tables = inspector.get_table_names()
+        
+        # If enquiries table is missing, try running db.create_all()
+        if "enquiries" not in initial_tables:
+            db.create_all()
+            # Re-inspect after creation
+            inspector = db.inspect(db.engine)
+            final_tables = inspector.get_table_names()
+        else:
+            final_tables = initial_tables
+
         from app.models import Enquiry
         count = Enquiry.query.count()
         
@@ -144,6 +157,8 @@ def db_check():
         return {
             "status": "success",
             "message": "Database is connected and writeable.",
+            "initial_tables": initial_tables,
+            "final_tables": final_tables,
             "count": count
         }
     except Exception as e:

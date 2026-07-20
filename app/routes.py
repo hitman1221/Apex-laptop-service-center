@@ -26,6 +26,7 @@ from app.services.enquiry_service import (
     EnquiryService,
     EnquiryServiceError,
 )
+from app import db
 
 
 main_bp = Blueprint("main", __name__)
@@ -115,3 +116,40 @@ def health():
         "status": "healthy",
         "service": current_app.config["BUSINESS_NAME"],
     }
+
+
+@main_bp.get("/db-check")
+def db_check():
+    """Diagnostic route to test live database connection and operations."""
+    try:
+        from app.models import Enquiry
+        count = Enquiry.query.count()
+        
+        # Try a test write
+        test = Enquiry(
+            name="Test Connection",
+            phone="1234567890",
+            email="test@example.com",
+            service="Laptop Repair",
+            message="Test database connection",
+            source_page="/db-check"
+        )
+        db.session.add(test)
+        db.session.commit()
+        
+        # Clean up
+        db.session.delete(test)
+        db.session.commit()
+        
+        return {
+            "status": "success",
+            "message": "Database is connected and writeable.",
+            "count": count
+        }
+    except Exception as e:
+        import traceback
+        return {
+            "status": "error",
+            "message": str(e),
+            "traceback": traceback.format_exc()
+        }

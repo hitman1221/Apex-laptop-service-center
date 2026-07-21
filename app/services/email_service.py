@@ -3,14 +3,27 @@
 from __future__ import annotations
 
 import logging
+from threading import Thread
 
+# pyrefly: ignore [missing-import]
 from flask import current_app, render_template
+# pyrefly: ignore [missing-import]
 from flask_mail import Message
 
 from app import mail
 
 
 logger = logging.getLogger(__name__)
+
+
+def send_async_email(app, message) -> None:
+    """Send an email asynchronously using the application context."""
+    with app.app_context():
+        try:
+            mail.send(message)
+            logger.info("Asynchronous email sent successfully.")
+        except Exception:
+            logger.exception("Failed to send email asynchronously.")
 
 
 def send_admin_enquiry_email(enquiry) -> bool:
@@ -52,17 +65,20 @@ Message:
 {enquiry.message}
 """
 
-        mail.send(message)
+        app = current_app._get_current_object()
+        Thread(
+            target=send_async_email,
+            args=(app, message),
+        ).start()
 
         logger.info(
-            "Admin enquiry email sent successfully."
+            "Admin enquiry email dispatch initiated in background thread."
         )
-
         return True
 
     except Exception:
         logger.exception(
-            "Failed to send admin enquiry email."
+            "Failed to initiate admin enquiry email thread."
         )
         return False
 
@@ -107,16 +123,19 @@ Regards,
 Apex Laptop Service Center
 """
 
-        mail.send(message)
+        app = current_app._get_current_object()
+        Thread(
+            target=send_async_email,
+            args=(app, message),
+        ).start()
 
         logger.info(
-            "Customer confirmation email sent."
+            "Customer confirmation email dispatch initiated in background thread."
         )
-
         return True
 
     except Exception:
         logger.exception(
-            "Failed to send customer confirmation email."
+            "Failed to initiate customer confirmation email thread."
         )
         return False

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Store Owner Login | {{ business.name }}
+{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light min-vh-100 d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-header bg-primary text-white text-center py-4 border-0">
+                        <div class="rounded-circle bg-white bg-opacity-20 d-inline-flex align-items-center justify-content-center p-3 mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa-solid fa-lock fa-xl text-white"></i>
+                        </div>
+                        <h2 class="h4 fw-bold mb-1">Store Owner Portal</h2>
+                        <p class="small text-white-50 mb-0">Sign in to manage customer call requests</p>
+                    </div>
+
+                    <div class="card-body p-4 p-sm-5 bg-white">
+                        <form action="{{ url_for('main.admin_login') }}" method="POST" novalidate>
+                            {{ form.csrf_token }}
+
+                            <div class="mb-4">
+                                <label for="username" class="form-label fw-bold small text-muted">
+                                    <i class="fa-solid fa-user me-1 text-primary"></i> Username
+                                </label>
+                                {{ form.username(class="form-control form-control-lg rounded-3 fs-6" + (" is-invalid" if form.username.errors else "")) }}
+                                {% for error in form.username.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password" class="form-label fw-bold small text-muted">
+                                    <i class="fa-solid fa-key me-1 text-primary"></i> Password
+                                </label>
+                                {{ form.password(class="form-control form-control-lg rounded-3 fs-6" + (" is-invalid" if form.password.errors else "")) }}
+                                {% for error in form.password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary-custom w-100 py-3 rounded-3 fw-bold fs-6 shadow-sm mt-2">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i> Log In to Dashboard
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="card-footer bg-light py-3 text-center border-0">
+                        <a href="{{ url_for('main.home') }}" class="text-decoration-none text-muted small">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Back to Public Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

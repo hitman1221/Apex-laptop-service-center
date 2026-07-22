@@ -3,6 +3,7 @@
 from flask_wtf import FlaskForm
 from wtforms import (
     EmailField,
+    PasswordField,
     SelectField,
     StringField,
     SubmitField,
@@ -142,3 +143,31 @@ class EnquiryForm(FlaskForm):
     )
 
     submit = SubmitField("Request a Callback")
+
+
+class AdminLoginForm(FlaskForm):
+    """Store Owner Admin Login Form."""
+
+    username = StringField(
+        "Admin Username",
+        validators=[
+            DataRequired(message="Please enter admin username.")
+        ],
+        render_kw={
+            "placeholder": "Enter admin username",
+            "autocomplete": "username",
+        },
+    )
+
+    password = PasswordField(
+        "Admin Password",
+        validators=[
+            DataRequired(message="Please enter admin password.")
+        ],
+        render_kw={
+            "placeholder": "Enter admin password",
+            "autocomplete": "current-password",
+        },
+    )
+
+    submit = SubmitField("Login to Dashboard")

@@ -102,3 +102,49 @@ class EnquiryService:
                 "for enquiry ID %s.",
                 enquiry.id,
             )
+
+    @staticmethod
+    def get_all_enquiries(status: str | None = None) -> list[Enquiry]:
+        """Fetch all customer enquiries, optionally filtered by status."""
+        query = Enquiry.query
+
+        if status and status.lower() != "all":
+            query = query.filter_by(status=status.lower())
+
+        return query.order_by(Enquiry.created_at.desc()).all()
+
+    @staticmethod
+    def get_enquiry_stats() -> dict[str, int]:
+        """Compute status counts for the admin dashboard."""
+        return {
+            "total": Enquiry.query.count(),
+            "new": Enquiry.query.filter_by(status="new").count(),
+            "in_progress": Enquiry.query.filter_by(
+                status="in_progress"
+            ).count(),
+            "completed": Enquiry.query.filter_by(
+                status="completed"
+            ).count(),
+        }
+
+    @staticmethod
+    def update_enquiry_status(
+        enquiry_id: int, new_status: str
+    ) -> Enquiry | None:
+        """Update the status of a specific customer enquiry."""
+        enquiry = db.session.get(Enquiry, enquiry_id)
+        if not enquiry:
+            return None
+
+        allowed_statuses = {"new", "in_progress", "completed"}
+        if new_status.lower() in allowed_statuses:
+            enquiry.status = new_status.lower()
+            try:
+                db.session.commit()
+            except SQLAlchemyError:
+                db.session.rollback()
+                current_app.logger.exception(
+                    "Error updating status for enquiry %s.", enquiry_id
+                )
+                raise EnquiryServiceError("Database update failed.")
+        return enquiry

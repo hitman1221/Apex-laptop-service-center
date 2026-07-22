@@ -220,14 +220,14 @@ class Config:
         "apexlaptopsolution@gmail.com",
     )
 
-    
     MAIL_DEFAULT_SENDER = (
         MAIL_DEFAULT_SENDER_NAME,
         MAIL_DEFAULT_SENDER_EMAIL,
     )
 
     ENQUIRY_RECIPIENT_EMAIL = os.getenv(
-        "ENQUIRY_RECIPIENT_EMAIL"
+        "ENQUIRY_RECIPIENT_EMAIL",
+        "apexlaptopsolution@gmail.com",
     )
 
     SEND_CUSTOMER_CONFIRMATION_EMAIL = env_to_bool(

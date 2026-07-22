@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: apex-laptop-service-center
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ENQUIRY_RECIPIENT_EMAIL
+        value: apexlaptopsolution@gmail.com
+      - key: MAIL_SERVER
+        value: smtp-relay.brevo.com
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_USE_TLS
+        value: "true"
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false

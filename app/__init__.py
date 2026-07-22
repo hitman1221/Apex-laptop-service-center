@@ -49,6 +49,15 @@ def create_app(config_name: str | None = None) -> Flask:
     with app.app_context():
         db.create_all()
 
+        from app.models import AdminUser
+        if not db.session.query(AdminUser).first():
+            default_user = app.config.get("ADMIN_USERNAME", "admin")
+            default_pass = app.config.get("ADMIN_PASSWORD", "apex@123")
+            admin = AdminUser(username=default_user)
+            admin.set_password(default_pass)
+            db.session.add(admin)
+            db.session.commit()
+
     return app
 
 

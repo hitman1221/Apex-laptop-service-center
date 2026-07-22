@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Store Owner Settings | {{ business.name }}
+{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light min-vh-100">
+    <div class="container">
+        <!-- Breadcrumb & Header -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-1">
+                        <li class="breadcrumb-item"><a href="{{ url_for('main.admin_enquiries') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Security & Credentials</li>
+                    </ol>
+                </nav>
+                <h1 class="h2 fw-bold text-dark mb-0">
+                    <i class="fa-solid fa-user-gear text-primary me-2"></i>Account Security Settings
+                </h1>
+            </div>
+            <div>
+                <a href="{{ url_for('main.admin_enquiries') }}" class="btn btn-outline-secondary btn-sm me-2">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Dashboard
+                </a>
+                <a href="{{ url_for('main.admin_logout') }}" class="btn btn-outline-danger btn-sm">
+                    <i class="fa-solid fa-right-from-bracket me-1"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Change Username Card -->
+            <div class="col-12 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-header bg-white py-3 border-bottom border-light">
+                        <h3 class="h5 fw-bold mb-0 text-dark">
+                            <i class="fa-solid fa-id-card text-primary me-2"></i>Change Admin Username
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="small text-muted mb-4">
+                            Current Username: <strong class="text-dark">{{ current_admin.username }}</strong>
+                        </p>
+
+                        <form action="{{ url_for('main.admin_change_username') }}" method="POST" novalidate>
+                            {{ username_form.csrf_token }}
+
+                            <div class="mb-3">
+                                <label for="new_username" class="form-label fw-bold small text-muted">New Username</label>
+                                {{ username_form.new_username(class="form-control" + (" is-invalid" if username_form.new_username.errors else "")) }}
+                                {% for error in username_form.new_username.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="current_password" class="form-label fw-bold small text-muted">Confirm Current Password</label>
+                                {{ username_form.current_password(class="form-control" + (" is-invalid" if username_form.current_password.errors else "")) }}
+                                {% for error in username_form.current_password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary-custom w-100 fw-bold">
+                                <i class="fa-solid fa-check me-1"></i> Update Username
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="col-12 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-header bg-white py-3 border-bottom border-light">
+                        <h3 class="h5 fw-bold mb-0 text-dark">
+                            <i class="fa-solid fa-key text-primary me-2"></i>Change Admin Password
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="{{ url_for('main.admin_change_password') }}" method="POST" novalidate>
+                            {{ password_form.csrf_token }}
+
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label fw-bold small text-muted">Current Password</label>
+                                {{ password_form.current_password(class="form-control" + (" is-invalid" if password_form.current_password.errors else "")) }}
+                                {% for error in password_form.current_password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label fw-bold small text-muted">New Password</label>
+                                {{ password_form.new_password(class="form-control" + (" is-invalid" if password_form.new_password.errors else "")) }}
+                                {% for error in password_form.new_password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="confirm_password" class="form-label fw-bold small text-muted">Confirm New Password</label>
+                                {{ password_form.confirm_password(class="form-control" + (" is-invalid" if password_form.confirm_password.errors else "")) }}
+                                {% for error in password_form.confirm_password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary-custom w-100 fw-bold">
+                                <i class="fa-solid fa-lock me-1"></i> Update Password
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

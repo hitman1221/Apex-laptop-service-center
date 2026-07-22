@@ -3,7 +3,10 @@
 from functools import wraps
 from typing import Callable, Any
 
-from flask import current_app, flash, redirect, session, url_for
+from flask import flash, redirect, session, url_for
+
+from app import db
+from app.models import AdminUser
 
 
 def admin_required(f: Callable[..., Any]) -> Callable[..., Any]:
@@ -11,7 +14,7 @@ def admin_required(f: Callable[..., Any]) -> Callable[..., Any]:
 
     @wraps(f)
     def decorated_function(*args: Any, **kwargs: Any) -> Any:
-        if not session.get("is_admin"):
+        if not session.get("is_admin") or not session.get("admin_id"):
             flash(
                 "Access restricted. Please log in as store owner to continue.",
                 "warning",
@@ -22,22 +25,34 @@ def admin_required(f: Callable[..., Any]) -> Callable[..., Any]:
     return decorated_function
 
 
-def verify_admin_credentials(username: str, password: str) -> bool:
-    """Check if provided credentials match configured admin credentials."""
-    expected_username = current_app.config.get("ADMIN_USERNAME", "admin")
-    expected_password = current_app.config.get("ADMIN_PASSWORD", "apex@123")
+def get_current_admin() -> AdminUser | None:
+    """Retrieve the currently logged-in admin user object."""
+    admin_id = session.get("admin_id")
+    if not admin_id:
+        return None
+    return db.session.get(AdminUser, admin_id)
 
-    return username.strip() == expected_username and password == expected_password
+
+def verify_admin_user(username: str, password: str) -> AdminUser | None:
+    """Check credentials against AdminUser table."""
+    user = (
+        db.session.query(AdminUser)
+        .filter_by(username=username.strip())
+        .first()
+    )
+    if user and user.check_password(password.strip()):
+        return user
+    return None
 
 
-def login_admin(username: str) -> None:
-    """Set admin login session flags."""
+def login_admin(user: AdminUser) -> None:
+    """Set admin login session variables."""
     session.clear()
     session["is_admin"] = True
-    session["admin_username"] = username
+    session["admin_id"] = user.id
+    session["admin_username"] = user.username
 
 
 def logout_admin() -> None:
     """Clear admin login session."""
-    session.pop("is_admin", None)
-    session.pop("admin_username", None)
+    session.clear()

@@ -22,16 +22,22 @@ from app.content import (
     TESTIMONIALS,
     WHY_CHOOSE_US,
 )
-from app.forms import AdminLoginForm, EnquiryForm
+from app.forms import (
+    AdminLoginForm,
+    ChangePasswordForm,
+    ChangeUsernameForm,
+    EnquiryForm,
+)
 from app.services.enquiry_service import (
     EnquiryService,
     EnquiryServiceError,
 )
 from app.utils.auth import (
     admin_required,
+    get_current_admin,
     login_admin,
     logout_admin,
-    verify_admin_credentials,
+    verify_admin_user,
 )
 from app import db
 
@@ -135,8 +141,9 @@ def admin_login():
         username = form.username.data.strip()
         password = form.password.data.strip()
 
-        if verify_admin_credentials(username, password):
-            login_admin(username)
+        user = verify_admin_user(username, password)
+        if user:
+            login_admin(user)
             flash("Welcome, Store Owner! You are now logged in.", "success")
             return redirect(url_for("main.admin_enquiries"))
         else:
@@ -156,8 +163,9 @@ def admin_logout():
 
 @main_bp.get("/dashboard")
 @main_bp.get("/admin/enquiries")
+@admin_required
 def admin_enquiries():
-    """Render customer call requests and enquiry management dashboard directly for store owner."""
+    """Render customer call requests and enquiry management dashboard."""
 
     status = request.args.get("status", "all").strip().lower()
     enquiries = EnquiryService.get_all_enquiries(status=status)
@@ -172,6 +180,7 @@ def admin_enquiries():
 
 
 @main_bp.post("/admin/enquiries/<int:enquiry_id>/status")
+@admin_required
 def update_admin_enquiry_status(enquiry_id: int):
     """Update status of a customer enquiry."""
 
@@ -194,5 +203,82 @@ def update_admin_enquiry_status(enquiry_id: int):
     return redirect(
         request.referrer or url_for("main.admin_enquiries")
     )
+
+
+@main_bp.get("/admin/settings")
+@admin_required
+def admin_settings():
+    """Render store owner security and credentials settings page."""
+
+    current_admin = get_current_admin()
+    username_form = ChangeUsernameForm(new_username=current_admin.username if current_admin else "")
+    password_form = ChangePasswordForm()
+
+    return render_template(
+        "admin/settings.html",
+        current_admin=current_admin,
+        username_form=username_form,
+        password_form=password_form,
+    )
+
+
+@main_bp.post("/admin/change-username")
+@admin_required
+def admin_change_username():
+    """Process store owner username update."""
+
+    current_admin = get_current_admin()
+    username_form = ChangeUsernameForm()
+    password_form = ChangePasswordForm()
+
+    if username_form.validate_on_submit():
+        new_user = username_form.new_username.data.strip()
+        curr_pass = username_form.current_password.data.strip()
+
+        if not current_admin.check_password(curr_pass):
+            flash("Current password is incorrect. Unable to update username.", "danger")
+        else:
+            current_admin.username = new_user
+            db.session.commit()
+            login_admin(current_admin)
+            flash(f"Username successfully updated to '{new_user}'.", "success")
+            return redirect(url_for("main.admin_settings"))
+
+    return render_template(
+        "admin/settings.html",
+        current_admin=current_admin,
+        username_form=username_form,
+        password_form=password_form,
+    )
+
+
+@main_bp.post("/admin/change-password")
+@admin_required
+def admin_change_password():
+    """Process store owner password update."""
+
+    current_admin = get_current_admin()
+    username_form = ChangeUsernameForm(new_username=current_admin.username if current_admin else "")
+    password_form = ChangePasswordForm()
+
+    if password_form.validate_on_submit():
+        curr_pass = password_form.current_password.data.strip()
+        new_pass = password_form.new_password.data.strip()
+
+        if not current_admin.check_password(curr_pass):
+            flash("Current password is incorrect. Unable to update password.", "danger")
+        else:
+            current_admin.set_password(new_pass)
+            db.session.commit()
+            flash("Password successfully updated. Please use your new password next time.", "success")
+            return redirect(url_for("main.admin_settings"))
+
+    return render_template(
+        "admin/settings.html",
+        current_admin=current_admin,
+        username_form=username_form,
+        password_form=password_form,
+    )
+
 
 

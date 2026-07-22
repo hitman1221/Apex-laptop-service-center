@@ -12,6 +12,7 @@ from wtforms import (
 from wtforms.validators import (
     DataRequired,
     Email,
+    EqualTo,
     Length,
     Optional,
 )
@@ -170,4 +171,66 @@ class AdminLoginForm(FlaskForm):
         },
     )
 
-    submit = SubmitField("Login to Dashboard")
+    submit = SubmitField("Login to Dashboard")
+
+
+class ChangeUsernameForm(FlaskForm):
+    """Form for store owner to change admin username."""
+
+    new_username = StringField(
+        "New Username",
+        validators=[
+            DataRequired(message="Please enter a new username."),
+            Length(
+                min=3,
+                max=80,
+                message="Username must be between 3 and 80 characters.",
+            ),
+        ],
+        render_kw={"placeholder": "Enter new username"},
+    )
+
+    current_password = PasswordField(
+        "Confirm with Current Password",
+        validators=[
+            DataRequired(message="Please enter current password to verify.")
+        ],
+        render_kw={"placeholder": "Enter current password"},
+    )
+
+    submit = SubmitField("Update Username")
+
+
+class ChangePasswordForm(FlaskForm):
+    """Form for store owner to change admin password."""
+
+    current_password = PasswordField(
+        "Current Password",
+        validators=[
+            DataRequired(message="Please enter your current password.")
+        ],
+        render_kw={"placeholder": "Enter current password"},
+    )
+
+    new_password = PasswordField(
+        "New Password",
+        validators=[
+            DataRequired(message="Please enter a new password."),
+            Length(
+                min=6,
+                message="New password must be at least 6 characters long.",
+            ),
+        ],
+        render_kw={"placeholder": "Enter new password"},
+    )
+
+    confirm_password = PasswordField(
+        "Confirm New Password",
+        validators=[
+            DataRequired(message="Please confirm your new password."),
+            EqualTo("new_password", message="Passwords must match."),
+        ],
+        render_kw={"placeholder": "Confirm new password"},
+    )
+
+    submit = SubmitField("Update Password")

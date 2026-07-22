@@ -11,13 +11,13 @@ load_dotenv(BASE_DIR / ".env")
 
 
 def normalize_database_url(database_url: str | None) -> str:
-    """Normalize PostgreSQL URLs provided by hosting platforms."""
+    """Normalize PostgreSQL and SQLite URLs to absolute persistent paths."""
 
-    if not database_url:
-        return (
-            "postgresql+psycopg2://apex_service_user:"
-            "your_database_password@localhost:5432/apex_service_db"
-        )
+    if not database_url or "sqlite" in database_url:
+        instance_dir = BASE_DIR / "instance"
+        instance_dir.mkdir(parents=True, exist_ok=True)
+        db_path = instance_dir / "apex_service.db"
+        return f"sqlite:///{db_path.as_posix()}"
 
     if database_url.startswith("postgres://"):
         return database_url.replace(

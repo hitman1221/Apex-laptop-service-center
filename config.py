@@ -230,9 +230,14 @@ class Config:
         "apexlaptopsolution@gmail.com",
     )
 
+    SEND_ADMIN_ENQUIRY_EMAIL = env_to_bool(
+        "SEND_ADMIN_ENQUIRY_EMAIL",
+        "false",
+    )
+
     SEND_CUSTOMER_CONFIRMATION_EMAIL = env_to_bool(
         "SEND_CUSTOMER_CONFIRMATION_EMAIL",
-        "true",
+        "false",
     )
 
 

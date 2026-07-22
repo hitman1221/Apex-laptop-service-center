@@ -31,6 +31,12 @@ def send_admin_enquiry_email(enquiry) -> bool:
     Send enquiry notification to business owner.
     """
 
+    if not current_app.config.get("SEND_ADMIN_ENQUIRY_EMAIL"):
+        logger.info(
+            "Admin email notification skipped as SEND_ADMIN_ENQUIRY_EMAIL is disabled."
+        )
+        return False
+
     recipient = current_app.config.get(
         "ENQUIRY_RECIPIENT_EMAIL"
     )

@@ -49,13 +49,43 @@ def create_app(config_name: str | None = None) -> Flask:
     with app.app_context():
         db.create_all()
 
-        from app.models import AdminUser
+        from app.models import AdminUser, Enquiry
         if not db.session.query(AdminUser).first():
             default_user = app.config.get("ADMIN_USERNAME", "admin")
             default_pass = app.config.get("ADMIN_PASSWORD", "apex@123")
             admin = AdminUser(username=default_user)
             admin.set_password(default_pass)
             db.session.add(admin)
+            db.session.commit()
+
+        if not db.session.query(Enquiry).first():
+            initial_enquiries = [
+                Enquiry(
+                    name="Rohit Tandel",
+                    phone="7506192931",
+                    email="tandelrohit987@gmail.com",
+                    service="Laptop Display Repair",
+                    message="for cpu problem",
+                    status="new",
+                ),
+                Enquiry(
+                    name="kishor tandel",
+                    phone="7506192931",
+                    email="tandelrohit987@gmail.com",
+                    service="Laptop Port Repair",
+                    message="jdwnwfnifjijnfwejijqeidjjdd",
+                    status="in_progress",
+                ),
+                Enquiry(
+                    name="Test User",
+                    phone="9876543210",
+                    email="testuser@example.com",
+                    service="Laptop Display Repair",
+                    message="Hello, this is a test enquiry for laptop repair.",
+                    status="new",
+                ),
+            ]
+            db.session.add_all(initial_enquiries)
             db.session.commit()
 
     return app
